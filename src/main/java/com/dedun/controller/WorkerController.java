@@ -3,7 +3,7 @@ package com.dedun.controller;
 
 import com.dedun.dto.request.WorkerRequest;
 import com.dedun.dto.response.WorkerResponse;
-import com.dedun.exception.HeadHunterException;
+import com.dedun.exception.JobSearchException;
 import com.dedun.service.WorkerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +17,8 @@ public class WorkerController {
         this.workerService = workerService;
     }
 
-    @PostMapping("/registration")
-    public WorkerResponse registerWorker(@RequestBody WorkerRequest workerRequest) throws HeadHunterException {
+    @PostMapping("registration")
+    public WorkerResponse create(@RequestBody WorkerRequest workerRequest) throws JobSearchException {
         return workerService.saveWorker(workerRequest);
     }
-
-    @DeleteMapping(value = "{id}")
-    public void delete(@PathVariable(value = "id") int id) throws HeadHunterException {
-        workerService.delete(id);
-    }
-
 }

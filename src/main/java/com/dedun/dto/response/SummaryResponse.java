@@ -11,92 +11,79 @@ public class SummaryResponse {
     private Integer workExperience;
     private String educarionalInstitution;
     private int desiredSalary;
-    private WorkerResponse workerResponse;
 
     public SummaryResponse() {
-    }
-
-    public SummaryResponse(Integer id, String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educarionalInstitution, int desiredSalary, WorkerResponse workerResponse) {
-        this.id = id;
-        this.mobilePhone = mobilePhone;
-        this.city = city;
-        this.dateOfBirth = dateOfBirth;
-        this.sex = sex;
-        this.workExperience = workExperience;
-        this.educarionalInstitution = educarionalInstitution;
-        this.desiredSalary = desiredSalary;
-        this.workerResponse = workerResponse;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public SummaryResponse setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getMobilePhone() {
         return mobilePhone;
     }
 
-    public void setMobilePhone(String mobilePhone) {
+    public SummaryResponse setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public SummaryResponse setCity(String city) {
         this.city = city;
+        return this;
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public SummaryResponse setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        return this;
     }
 
     public String getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public SummaryResponse setSex(String sex) {
         this.sex = sex;
+        return this;
     }
 
     public Integer getWorkExperience() {
         return workExperience;
     }
 
-    public void setWorkExperience(Integer workExperience) {
+    public SummaryResponse setWorkExperience(Integer workExperience) {
         this.workExperience = workExperience;
+        return this;
     }
 
     public String getEducarionalInstitution() {
         return educarionalInstitution;
     }
 
-    public void setEducarionalInstitution(String educarionalInstitution) {
+    public SummaryResponse setEducarionalInstitution(String educarionalInstitution) {
         this.educarionalInstitution = educarionalInstitution;
+        return this;
     }
 
     public int getDesiredSalary() {
         return desiredSalary;
     }
 
-    public void setDesiredSalary(int desiredSalary) {
+    public SummaryResponse setDesiredSalary(int desiredSalary) {
         this.desiredSalary = desiredSalary;
-    }
-
-    public WorkerResponse getWorkerResponse() {
-        return workerResponse;
-    }
-
-    public void setWorkerResponse(WorkerResponse workerResponse) {
-        this.workerResponse = workerResponse;
+        return this;
     }
 }

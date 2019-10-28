@@ -2,6 +2,7 @@ package com.dedun.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,23 +17,26 @@ public class Summary {
     private LocalDate dateOfBirth;
     private String sex;
     private Integer workExperience;
-    private String educarionalInstitution;
+    private String educationalInstitution;
     private int desiredSalary;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "worker_id")
     private Worker worker;
+
+    @OneToMany(mappedBy = "summary", cascade = CascadeType.REMOVE)
+    private List<Skills> skills;
 
     public Summary() {
     }
 
-    public Summary(String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educarionalInstitution, int desiredSalary, Worker worker) {
+    public Summary(String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educationalInstitution, int desiredSalary, Worker worker) {
         this.mobilePhone = mobilePhone;
         this.city = city;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
         this.workExperience = workExperience;
-        this.educarionalInstitution = educarionalInstitution;
+        this.educationalInstitution = educationalInstitution;
         this.desiredSalary = desiredSalary;
         this.worker = worker;
     }
@@ -85,12 +89,12 @@ public class Summary {
         this.workExperience = workExperience;
     }
 
-    public String getEducarionalInstitution() {
-        return educarionalInstitution;
+    public String getEducationalInstitution() {
+        return educationalInstitution;
     }
 
-    public void setEducarionalInstitution(String educarionalInstitution) {
-        this.educarionalInstitution = educarionalInstitution;
+    public void setEducationalInstitution(String educationalInstitution) {
+        this.educationalInstitution = educationalInstitution;
     }
 
     public int getDesiredSalary() {
@@ -109,6 +113,15 @@ public class Summary {
         this.worker = worker;
     }
 
+    public List<Skills> getSkills() {
+        return skills;
+    }
+
+    public Summary setSkills(List<Skills> skills) {
+        this.skills = skills;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,12 +134,13 @@ public class Summary {
                 Objects.equals(getDateOfBirth(), summary.getDateOfBirth()) &&
                 Objects.equals(getSex(), summary.getSex()) &&
                 Objects.equals(getWorkExperience(), summary.getWorkExperience()) &&
-                Objects.equals(getEducarionalInstitution(), summary.getEducarionalInstitution()) &&
-                Objects.equals(getWorker(), summary.getWorker());
+                Objects.equals(getEducationalInstitution(), summary.getEducationalInstitution()) &&
+                Objects.equals(getWorker(), summary.getWorker()) &&
+                Objects.equals(getSkills(), summary.getSkills());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getMobilePhone(), getCity(), getDateOfBirth(), getSex(), getWorkExperience(), getEducarionalInstitution(), getDesiredSalary(), getWorker());
+        return Objects.hash(getId(), getMobilePhone(), getCity(), getDateOfBirth(), getSex(), getWorkExperience(), getEducationalInstitution(), getDesiredSalary(), getWorker(), getSkills());
     }
 }

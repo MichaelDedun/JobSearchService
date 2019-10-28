@@ -1,8 +1,8 @@
 package com.dedun.validator;
 
 import com.dedun.dto.request.WorkerRequest;
-import com.dedun.exception.HeadHunterErrorCode;
-import com.dedun.exception.HeadHunterException;
+import com.dedun.exception.JobSearchErrorCode;
+import com.dedun.exception.JobSearchException;
 import com.dedun.model.Worker;
 import com.dedun.repository.WorkerRepository;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,8 @@ public class WorkerValidator {
         this.workerRepository = workerRepository;
     }
 
-    public void checkWorkerAlreadyExist(WorkerRequest workerRequest) throws HeadHunterException {
+    public void checkWorkerAlreadyExist(WorkerRequest workerRequest) throws JobSearchException {
         if (workerRepository.getByLogin(workerRequest.getLogin()) != null)
-            throw new HeadHunterException(HeadHunterErrorCode.WORKER_EXIST);
-    }
-
-    public void checkWorkerExist(Worker worker) throws HeadHunterException {
-        if (worker == null)
-            throw new HeadHunterException(HeadHunterErrorCode.WORKER_NOT_EXIST);
+            throw new JobSearchException(JobSearchErrorCode.WORKER_EXIST);
     }
 }
