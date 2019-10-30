@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class RequirementsRequest {
-    @NotBlank(message = "Requirements can't be empty")
     @NotNull(message = "Requirements can'be null")
     private List<String> requirements;
 

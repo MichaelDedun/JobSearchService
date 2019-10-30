@@ -44,6 +44,14 @@ create table "summary"
 	FOREIGN KEY (worker_id) REFERENCES "worker"(id)
 );
 
+create table skills
+(
+    title      VARCHAR(255) NOT NULL,
+    summary_id BIGINT,
+    primary key (title),
+    foreign key (summary_id) REFERENCES "summary"(id)
+);
+
 create table "vacancy"
 (
 	id BIGSERIAL,

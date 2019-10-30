@@ -10,25 +10,20 @@ import java.time.LocalDate;
 public class SummaryRequest {
     @NotBlank(message = "Mobile phone name can't be empty")
     @NotNull(message = "Mobile phone name can'be null")
-    @Length(min = 8)
     private String mobilePhone;
     @NotBlank(message = "City  can't be empty")
     @NotNull(message = "City can'be null")
     private String city;
-    @NotBlank(message = "Date 0f birth name can't be empty")
-    @NotNull(message = "Date 0f birth can'be null")
     private LocalDate dateOfBirth;
     @NotBlank(message = "Sex name can't be empty")
     @NotNull(message = "Sex can'be null")
     private String sex;
-    @NotBlank(message = "Work expirience can't be empty")
     @NotNull(message = "Work expirience can'be null")
     @Positive(message = "The value must be positive")
     private Integer workExperience;
+    @NotNull(message = "Educational institution expirience can'be null")
     @NotBlank(message = "Educational institution can't be empty")
-    @NotNull(message = "Educational institution can'be null")
     private String educationalInstitution;
-    @NotBlank(message = "Desired salary can't be empty")
     @NotNull(message = "Desired salary can'be null")
     @Positive(message = "The value must be positive")
     private int desiredSalary;

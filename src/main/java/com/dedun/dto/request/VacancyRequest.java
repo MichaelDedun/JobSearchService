@@ -8,11 +8,9 @@ public class VacancyRequest {
     @NotBlank(message = "Category name can't be empty")
     @NotNull(message = "Category name can'be null")
     private String category;
-    @NotBlank(message = "Necessary experience name can't be empty")
     @NotNull(message = "Necessary experience  name can'be null")
     @Positive(message = "The value must be positive")
     private Integer necessaryExperience;
-    @NotBlank(message = "Salary name can't be empty")
     @NotNull(message = "Salary name can'be null")
     @Positive(message = "The value must be positive")
     private Integer salary;
