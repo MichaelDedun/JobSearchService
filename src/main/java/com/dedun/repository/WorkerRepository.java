@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WorkerRepository extends JpaRepository<Worker, Integer> {
-     Optional<Worker> findById(int id);
-     Worker getByLogin(String login);
+public interface WorkerRepository extends JpaRepository<Worker, Long> {
+
 }

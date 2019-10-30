@@ -3,7 +3,7 @@ package com.dedun.dto.response;
 import java.time.LocalDate;
 
 public class SummaryResponse {
-    private Integer id;
+    private Long id;
     private String mobilePhone;
     private String city;
     private LocalDate dateOfBirth;
@@ -15,11 +15,11 @@ public class SummaryResponse {
     public SummaryResponse() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public SummaryResponse setId(Integer id) {
+    public SummaryResponse setId(Long id) {
         this.id = id;
         return this;
     }

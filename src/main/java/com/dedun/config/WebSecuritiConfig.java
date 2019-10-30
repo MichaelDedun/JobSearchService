@@ -1,7 +1,6 @@
 package com.dedun.config;
 
-import com.dedun.service.EmployerService;
-import com.dedun.service.WorkerService;
+import com.dedun.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,13 +19,11 @@ import java.util.Collections;
 @Configuration
 @EnableWebSecurity
 public class WebSecuritiConfig extends WebSecurityConfigurerAdapter {
-    private final WorkerService workerService;
-    private final EmployerService employerService;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    public WebSecuritiConfig(WorkerService workerService, EmployerService employerService) {
-        this.workerService = workerService;
-        this.employerService = employerService;
+    public WebSecuritiConfig(UserService userService) {
+        this.userService = userService;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -36,8 +33,7 @@ public class WebSecuritiConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/worker/registration").permitAll()
-                .antMatchers("/login", "/employer/registration").permitAll()
+                .antMatchers("/login", "/worker/registration", "/employer/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
@@ -53,8 +49,7 @@ public class WebSecuritiConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(workerService).passwordEncoder(passwordEncoder);
-        auth.userDetailsService(employerService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
     @Bean

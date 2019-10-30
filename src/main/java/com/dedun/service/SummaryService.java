@@ -1,8 +1,6 @@
 package com.dedun.service;
 
 import com.dedun.dto.request.SummaryRequest;
-import com.dedun.dto.response.SummaryResponse;
-import com.dedun.dto.response.WorkerResponse;
 import com.dedun.exception.JobSearchErrorCode;
 import com.dedun.exception.JobSearchException;
 import com.dedun.model.Summary;
@@ -13,7 +11,6 @@ import com.dedun.validator.SummaryValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SummaryService {
@@ -29,10 +26,9 @@ public class SummaryService {
         this.summaryValidator = summaryValidator;
     }
 
-    public Summary create(SummaryRequest summaryRequest, int id) throws JobSearchException {
+    public Summary create(SummaryRequest summaryRequest, Long id) throws JobSearchException {
         Worker worker = workerRepository.findById(id)
                 .orElseThrow(() -> new JobSearchException(JobSearchErrorCode.WORKER_NOT_EXIST));
-        summaryValidator.checkRole(worker);
         Summary summary = new Summary(summaryRequest.getMobilePhone(), summaryRequest.getCity(), summaryRequest.getDateOfBirth(), summaryRequest.getSex(), summaryRequest.getWorkExperience(), summaryRequest.getEducarionalInstitution(), summaryRequest.getDesiredSalary(), worker);
         summaryRepository.save(summary);
         return summary;
@@ -52,7 +48,7 @@ public class SummaryService {
         return summary;
     }
 
-    public List<Summary> getAll(int id) throws JobSearchException {
+    public List<Summary> getAll(Long id) throws JobSearchException {
         Worker worker = workerRepository.findById(id)
                 .orElseThrow(() -> new JobSearchException(JobSearchErrorCode.WORKER_NOT_EXIST));
         summaryValidator.checkRole(worker);

@@ -14,5 +14,5 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer> {
 
     Summary findByWorkerId(int id);
 
-    List<Summary> findAllByWorkerId(int id);
+    List<Summary> findAllByWorkerId(Long id);
 }

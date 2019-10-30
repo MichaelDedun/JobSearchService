@@ -10,51 +10,48 @@ public class WorkerResponse {
     public WorkerResponse() {
     }
 
-    public WorkerResponse(Integer id, String login, String firstName, String lastName, String email) {
-        this.id = id;
-        this.login = login;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public WorkerResponse setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public WorkerResponse setLogin(String login) {
         this.login = login;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public WorkerResponse setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public WorkerResponse setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public WorkerResponse setEmail(String email) {
         this.email = email;
+        return this;
     }
 }

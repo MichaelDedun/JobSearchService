@@ -4,6 +4,7 @@ import com.dedun.converter.SummaryConverter;
 import com.dedun.dto.request.SummaryRequest;
 import com.dedun.dto.response.SummaryResponse;
 import com.dedun.exception.JobSearchException;
+import com.dedun.model.User;
 import com.dedun.model.Worker;
 import com.dedun.service.SummaryService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,9 +25,9 @@ public class SummaryController {
     }
 
     @PostMapping
-    public SummaryResponse create(@AuthenticationPrincipal Worker worker,
+    public SummaryResponse create(@AuthenticationPrincipal User user,
                                   @RequestBody SummaryRequest summaryRequest) throws JobSearchException {
-        return summaryConverter.from(summaryService.create(summaryRequest, worker.getId()));
+        return summaryConverter.from(summaryService.create(summaryRequest, user.getId()));
     }
 
     @GetMapping
@@ -35,7 +36,6 @@ public class SummaryController {
                 .stream()
                 .map(summaryConverter::from)
                 .collect(Collectors.toList());
-
     }
 
     @PutMapping(value = "{id}")

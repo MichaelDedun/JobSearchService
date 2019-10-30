@@ -11,7 +11,7 @@ public class Summary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String mobilePhone;
     private String city;
     private LocalDate dateOfBirth;
@@ -41,12 +41,13 @@ public class Summary {
         this.worker = worker;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Summary setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getMobilePhone() {
@@ -109,8 +110,9 @@ public class Summary {
         return worker;
     }
 
-    public void setWorker(Worker worker) {
+    public Summary setWorker(Worker worker) {
         this.worker = worker;
+        return this;
     }
 
     public List<Skills> getSkills() {
