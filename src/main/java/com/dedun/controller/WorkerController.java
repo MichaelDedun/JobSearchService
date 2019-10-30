@@ -8,6 +8,8 @@ import com.dedun.exception.JobSearchException;
 import com.dedun.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/worker")
 public class WorkerController {
@@ -22,7 +24,7 @@ public class WorkerController {
 
 
     @PostMapping("registration")
-    public WorkerResponse create(@RequestBody WorkerRequest request) throws JobSearchException {
+    public WorkerResponse create(@RequestBody @Valid WorkerRequest request) throws JobSearchException {
         return workerConverter.from(userService.saveWorker(request));
     }
 }

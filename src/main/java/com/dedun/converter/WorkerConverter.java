@@ -23,7 +23,7 @@ public class WorkerConverter extends JobEntityConverter<Worker, WorkerResponse> 
 
     }
 
-    public Worker toEntity(WorkerRequest request) {
+    public static Worker toEntity(WorkerRequest request) {
          return new Worker(request.getEmail(),request.getLogin(),request.getPassword(),request.getFirstName(),request.getLastName());
     }
 }

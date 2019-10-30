@@ -1,27 +1,39 @@
 package com.dedun.dto.request;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 public class SummaryRequest {
+    @NotBlank(message = "Mobile phone name can't be empty")
+    @NotNull(message = "Mobile phone name can'be null")
+    @Length(min = 8)
     private String mobilePhone;
+    @NotBlank(message = "City  can't be empty")
+    @NotNull(message = "City can'be null")
     private String city;
+    @NotBlank(message = "Date 0f birth name can't be empty")
+    @NotNull(message = "Date 0f birth can'be null")
     private LocalDate dateOfBirth;
+    @NotBlank(message = "Sex name can't be empty")
+    @NotNull(message = "Sex can'be null")
     private String sex;
+    @NotBlank(message = "Work expirience can't be empty")
+    @NotNull(message = "Work expirience can'be null")
+    @Positive(message = "The value must be positive")
     private Integer workExperience;
-    private String educarionalInstitution;
+    @NotBlank(message = "Educational institution can't be empty")
+    @NotNull(message = "Educational institution can'be null")
+    private String educationalInstitution;
+    @NotBlank(message = "Desired salary can't be empty")
+    @NotNull(message = "Desired salary can'be null")
+    @Positive(message = "The value must be positive")
     private int desiredSalary;
 
     public SummaryRequest() {
-    }
-
-    public SummaryRequest(String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educarionalInstitution, int desiredSalary) {
-        this.mobilePhone = mobilePhone;
-        this.city = city;
-        this.dateOfBirth = dateOfBirth;
-        this.sex = sex;
-        this.workExperience = workExperience;
-        this.educarionalInstitution = educarionalInstitution;
-        this.desiredSalary = desiredSalary;
     }
 
     public String getMobilePhone() {
@@ -64,12 +76,12 @@ public class SummaryRequest {
         this.workExperience = workExperience;
     }
 
-    public String getEducarionalInstitution() {
-        return educarionalInstitution;
+    public String getEducationalInstitution() {
+        return educationalInstitution;
     }
 
-    public void setEducarionalInstitution(String educarionalInstitution) {
-        this.educarionalInstitution = educarionalInstitution;
+    public void setEducationalInstitution(String educationalInstitution) {
+        this.educationalInstitution = educationalInstitution;
     }
 
     public int getDesiredSalary() {

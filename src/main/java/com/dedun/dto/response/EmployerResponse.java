@@ -1,7 +1,7 @@
 package com.dedun.dto.response;
 
 public class EmployerResponse {
-    private Integer id;
+    private Long id;
     private String email;
     private String companyName;
     private String login;
@@ -10,11 +10,11 @@ public class EmployerResponse {
     public EmployerResponse() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public EmployerResponse setId(Integer id) {
+    public EmployerResponse setId(Long id) {
         this.id = id;
         return this;
     }

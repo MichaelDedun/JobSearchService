@@ -1,5 +1,6 @@
 package com.dedun.service;
 
+import com.dedun.converter.SummaryConverter;
 import com.dedun.dto.request.SummaryRequest;
 import com.dedun.exception.JobSearchErrorCode;
 import com.dedun.exception.JobSearchException;
@@ -26,24 +27,24 @@ public class SummaryService {
         this.summaryValidator = summaryValidator;
     }
 
-    public Summary create(SummaryRequest summaryRequest, Long id) throws JobSearchException {
+    public Summary create(SummaryRequest request, Long id) throws JobSearchException {
         Worker worker = workerRepository.findById(id)
                 .orElseThrow(() -> new JobSearchException(JobSearchErrorCode.WORKER_NOT_EXIST));
-        Summary summary = new Summary(summaryRequest.getMobilePhone(), summaryRequest.getCity(), summaryRequest.getDateOfBirth(), summaryRequest.getSex(), summaryRequest.getWorkExperience(), summaryRequest.getEducarionalInstitution(), summaryRequest.getDesiredSalary(), worker);
+        Summary summary = SummaryConverter.toEntity(request, worker);
         summaryRepository.save(summary);
         return summary;
     }
 
-    public Summary edit(SummaryRequest summaryRequest, int id) throws JobSearchException {
+    public Summary edit(SummaryRequest request, int id) throws JobSearchException {
         Summary summary = summaryRepository.findById(id)
                 .orElseThrow(() -> new JobSearchException(JobSearchErrorCode.SUMMARY_NOT_EXIST));
-        summary.setCity(summaryRequest.getCity());
-        summary.setDateOfBirth(summaryRequest.getDateOfBirth());
-        summary.setDesiredSalary(summaryRequest.getDesiredSalary());
-        summary.setEducationalInstitution(summaryRequest.getEducarionalInstitution());
-        summary.setMobilePhone(summaryRequest.getMobilePhone());
-        summary.setSex(summaryRequest.getSex());
-        summary.setWorkExperience(summaryRequest.getWorkExperience());
+        summary.setCity(request.getCity());
+        summary.setDateOfBirth(request.getDateOfBirth());
+        summary.setDesiredSalary(request.getDesiredSalary());
+        summary.setEducationalInstitution(request.getEducationalInstitution());
+        summary.setMobilePhone(request.getMobilePhone());
+        summary.setSex(request.getSex());
+        summary.setWorkExperience(request.getWorkExperience());
         summaryRepository.save(summary);
         return summary;
     }

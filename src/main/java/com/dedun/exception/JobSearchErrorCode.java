@@ -6,6 +6,7 @@ public enum JobSearchErrorCode {
     EMPLOYER_EXIST("Employer already in data base"),
     WORKER_NOT_EXIST("Worker not exist"),
     SUMMARY_NOT_EXIST("Summary not exist"),
+    VACANCY_NOT_EXIST("Vacancy not exist"),
     CANT_CREATE_SUMMARY("Cant create summary");
 
     private String errorCode;

@@ -12,7 +12,8 @@ public class EmployerService  {
     private final PasswordEncoder passwordEncoder;
     private final EmployerValidator employerValidator;
 
-    public EmployerService(EmployerRepository employerRepository, EmployerValidator employerValidator) {
+    public EmployerService(EmployerRepository employerRepository,
+                           EmployerValidator employerValidator) {
         this.employerRepository = employerRepository;
         this.employerValidator = employerValidator;
         this.passwordEncoder = new BCryptPasswordEncoder();

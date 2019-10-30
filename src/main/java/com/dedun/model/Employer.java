@@ -1,6 +1,7 @@
 package com.dedun.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -8,17 +9,17 @@ import java.util.Objects;
 public class Employer extends User {
     private String companyName;
     private String feedback;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+
+    @OneToMany(mappedBy = "employer", cascade = CascadeType.REMOVE)
+    private List<Vacancy> vacancies;
 
     public Employer() {
     }
 
-    public Employer(String companyName, String feedback, User user) {
+    public Employer(String email, String login, String password, String companyName, String feedback) {
+        super(email, login, password);
         this.companyName = companyName;
         this.feedback = feedback;
-        this.user = user;
     }
 
     public String getCompanyName() {
@@ -39,12 +40,12 @@ public class Employer extends User {
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public List<Vacancy> getVacancies() {
+        return vacancies;
     }
 
-    public Employer setUser(User user) {
-        this.user = user;
+    public Employer setVacancies(List<Vacancy> vacancies) {
+        this.vacancies = vacancies;
         return this;
     }
 
@@ -55,12 +56,11 @@ public class Employer extends User {
         if (!super.equals(o)) return false;
         Employer employer = (Employer) o;
         return Objects.equals(getCompanyName(), employer.getCompanyName()) &&
-                Objects.equals(getFeedback(), employer.getFeedback()) &&
-                Objects.equals(getUser(), employer.getUser());
+                Objects.equals(getFeedback(), employer.getFeedback());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getCompanyName(), getFeedback(), getUser());
+        return Objects.hash(super.hashCode(), getCompanyName(), getFeedback());
     }
 }

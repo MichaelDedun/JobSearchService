@@ -1,21 +1,32 @@
 package com.dedun.dto.request;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class EmployerRequest {
+    @Email(message = "Email address has invalid format: ${validatedValue}",
+            regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
     private String email;
+    @NotBlank(message = "Company name can't be empty")
+    @NotNull(message = "Company name can'be null")
+    @Length(min = 6)
     private String companyName;
+    @NotBlank(message = "Login can't be empty")
+    @NotNull(message = "Login can'be null")
+    @Length(min = 6)
     private String login;
+    @NotBlank(message = "Password can't be empty")
+    @NotNull(message = "Password can'be null")
+    @Length(min = 6)
     private String password;
+    @NotBlank(message = "Feedback can't be empty")
+    @NotNull(message = "Feedback can'be null")
     private String feedback;
 
     public EmployerRequest() {
-    }
-
-    public EmployerRequest(String email, String companyName, String login, String password, String feedback) {
-        this.email = email;
-        this.companyName = companyName;
-        this.login = login;
-        this.password = password;
-        this.feedback = feedback;
     }
 
     public String getEmail() {
