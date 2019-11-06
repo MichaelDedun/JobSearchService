@@ -39,6 +39,7 @@ create table "summary"
 	sex VARCHAR(255),
 	work_experience VARCHAR(255),
 	educational_institution VARCHAR(255),
+	career_objective VARCHAR(255),
 	desired_salary INTEGER,
 	date TIMESTAMP,
 	state VARCHAR(20),
@@ -74,6 +75,7 @@ create table "requirements"
     primary key (title),
     foreign key (vacancy_id) REFERENCES "vacancy"(id)
 );
+
 
 
 
