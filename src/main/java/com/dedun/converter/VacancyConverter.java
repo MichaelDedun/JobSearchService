@@ -6,6 +6,8 @@ import com.dedun.model.Employer;
 import com.dedun.model.Vacancy;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+
 @Service
 public class VacancyConverter extends JobEntityConverter<Vacancy, VacancyResponse> {
     public VacancyConverter() {
@@ -22,6 +24,6 @@ public class VacancyConverter extends JobEntityConverter<Vacancy, VacancyRespons
     }
 
     public static Vacancy toEntity(VacancyRequest request, Employer employer) {
-        return new Vacancy(request.getCategory(),request.getNecessaryExperience(),request.getSalary(),employer);
+        return new Vacancy(request.getCategory(), request.getNecessaryExperience(), request.getSalary(), ZonedDateTime.now(), employer);
     }
 }

@@ -40,6 +40,8 @@ create table "summary"
 	work_experience VARCHAR(255),
 	educational_institution VARCHAR(255),
 	desired_salary INTEGER,
+	date TIMESTAMP,
+	state VARCHAR(20),
 	PRIMARY KEY (id),
 	FOREIGN KEY (worker_id) REFERENCES "worker"(id)
 );
@@ -59,6 +61,8 @@ create table "vacancy"
 	category VARCHAR(255),
 	necessary_experience VARCHAR(255),
 	salary INTEGER,
+	date TIMESTAMP,
+	state VARCHAR(20),
 	PRIMARY KEY(id),
 	FOREIGN KEY(employer_id) REFERENCES "employer"(id)
 );
@@ -70,4 +74,6 @@ create table "requirements"
     primary key (title),
     foreign key (vacancy_id) REFERENCES "vacancy"(id)
 );
+
+
 

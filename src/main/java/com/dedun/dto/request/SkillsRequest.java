@@ -1,6 +1,5 @@
 package com.dedun.dto.request;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class SkillsRequest {
     }
 
     public List<String> getSkills() {
-        return skills;
+        return  skills;
     }
 
     public SkillsRequest setSkills(List<String> skills) {

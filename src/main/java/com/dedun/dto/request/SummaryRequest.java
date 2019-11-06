@@ -1,10 +1,9 @@
 package com.dedun.dto.request;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class SummaryRequest {
@@ -24,9 +23,12 @@ public class SummaryRequest {
     @NotNull(message = "Educational institution expirience can'be null")
     @NotBlank(message = "Educational institution can't be empty")
     private String educationalInstitution;
+    @NotNull(message = "Career objective can'be null")
+    @NotBlank(message = "Career objective  can't be empty")
+    private String careerObjective;
     @NotNull(message = "Desired salary can'be null")
     @Positive(message = "The value must be positive")
-    private int desiredSalary;
+    private BigDecimal desiredSalary;
 
     public SummaryRequest() {
     }
@@ -79,11 +81,20 @@ public class SummaryRequest {
         this.educationalInstitution = educationalInstitution;
     }
 
-    public int getDesiredSalary() {
+    public BigDecimal getDesiredSalary() {
         return desiredSalary;
     }
 
-    public void setDesiredSalary(int desiredSalary) {
+    public void setDesiredSalary(BigDecimal desiredSalary) {
         this.desiredSalary = desiredSalary;
+    }
+
+    public String getCareerObjective() {
+        return careerObjective;
+    }
+
+    public SummaryRequest setCareerObjective(String careerObjective) {
+        this.careerObjective = careerObjective;
+        return this;
     }
 }

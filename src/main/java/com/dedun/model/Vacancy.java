@@ -1,6 +1,9 @@
 package com.dedun.model;
 
+import com.dedun.model.enums.State;
+
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +16,7 @@ public class Vacancy {
     private String category;
     private Integer necessaryExperience;
     private Integer salary;
+    private ZonedDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "employer_id")
@@ -21,13 +25,18 @@ public class Vacancy {
     @OneToMany(mappedBy = "vacancy", cascade = CascadeType.REMOVE)
     private List<Requirements> requirements;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private State state;
+
     public Vacancy() {
     }
 
-    public Vacancy(String category, Integer necessaryExperience, Integer salary, Employer employer) {
+    public Vacancy(String category, Integer necessaryExperience, Integer salary, ZonedDateTime date, Employer employer) {
         this.category = category;
         this.necessaryExperience = necessaryExperience;
         this.salary = salary;
+        this.date = date;
         this.employer = employer;
     }
 
@@ -76,6 +85,24 @@ public class Vacancy {
         return this;
     }
 
+    public State getState() {
+        return state;
+    }
+
+    public Vacancy setState(State state) {
+        this.state = state;
+        return this;
+    }
+
+    public ZonedDateTime getDate() {
+        return date;
+    }
+
+    public Vacancy setDate(ZonedDateTime date) {
+        this.date = date;
+        return this;
+    }
+
     public List<Requirements> getRequirements() {
         return requirements;
     }
@@ -94,12 +121,14 @@ public class Vacancy {
                 Objects.equals(getCategory(), vacancy.getCategory()) &&
                 Objects.equals(getNecessaryExperience(), vacancy.getNecessaryExperience()) &&
                 Objects.equals(getSalary(), vacancy.getSalary()) &&
+                Objects.equals(getDate(), vacancy.getDate()) &&
                 Objects.equals(getEmployer(), vacancy.getEmployer()) &&
-                Objects.equals(getRequirements(), vacancy.getRequirements());
+                Objects.equals(getRequirements(), vacancy.getRequirements()) &&
+                getState() == vacancy.getState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCategory(), getNecessaryExperience(), getSalary(), getEmployer(), getRequirements());
+        return Objects.hash(getId(), getCategory(), getNecessaryExperience(), getSalary(), getDate(), getEmployer(), getRequirements(), getState());
     }
 }

@@ -1,5 +1,6 @@
 package com.dedun.dto.response;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class SummaryResponse {
@@ -10,7 +11,8 @@ public class SummaryResponse {
     private String sex;
     private Integer workExperience;
     private String educarionalInstitution;
-    private int desiredSalary;
+    private String careerObjective;
+    private BigDecimal desiredSalary;
 
     public SummaryResponse() {
     }
@@ -78,11 +80,20 @@ public class SummaryResponse {
         return this;
     }
 
-    public int getDesiredSalary() {
+    public String getCareerObjective() {
+        return careerObjective;
+    }
+
+    public SummaryResponse setCareerObjective(String careerObjective) {
+        this.careerObjective = careerObjective;
+        return this;
+    }
+
+    public BigDecimal getDesiredSalary() {
         return desiredSalary;
     }
 
-    public SummaryResponse setDesiredSalary(int desiredSalary) {
+    public SummaryResponse setDesiredSalary(BigDecimal desiredSalary) {
         this.desiredSalary = desiredSalary;
         return this;
     }

@@ -6,6 +6,8 @@ import com.dedun.model.Summary;
 import com.dedun.model.Worker;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+
 @Service
 public class SummaryConverter extends JobEntityConverter<Summary, SummaryResponse> {
     public SummaryConverter() {
@@ -22,10 +24,11 @@ public class SummaryConverter extends JobEntityConverter<Summary, SummaryRespons
                 .setSex(summary.getSex())
                 .setWorkExperience(summary.getWorkExperience())
                 .setEducarionalInstitution(summary.getEducationalInstitution())
+                .setCareerObjective(summary.getCareerObjective())
                 .setDesiredSalary(summary.getDesiredSalary());
     }
 
     public static Summary toEntity(SummaryRequest request, Worker worker) {
-        return new Summary(request.getMobilePhone(), request.getCity(), request.getDateOfBirth(), request.getSex(), request.getWorkExperience(), request.getEducationalInstitution(), request.getDesiredSalary(), worker);
+        return new Summary(request.getMobilePhone(), request.getCity(), request.getDateOfBirth(), request.getSex(), request.getWorkExperience(), request.getEducationalInstitution(), request.getDesiredSalary(), request.getCareerObjective() ,ZonedDateTime.now(), worker);
     }
 }

@@ -32,6 +32,14 @@ public class SummaryController {
         return summaryConverter.from(summaryService.create(summaryRequest, user.getId()));
     }
 
+    @GetMapping("/fresh")
+    public List<SummaryResponse> getAllFresh() {
+        return summaryService.getAllFresh()
+                .stream()
+                .map(summaryConverter::from)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping
     public List<SummaryResponse> getAll(@AuthenticationPrincipal Worker worker) throws JobSearchException {
         return summaryService.getAll(worker.getId())
@@ -40,9 +48,32 @@ public class SummaryController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping(value = "{id}")
+    public SummaryResponse get(@AuthenticationPrincipal Worker worker,
+                               @PathVariable(value = "id") Long id) throws JobSearchException {
+        return summaryConverter.from(summaryService.get(worker, id));
+    }
+
     @PutMapping(value = "{id}")
-    public SummaryResponse edit(@PathVariable(value = "id") int id,
+    public SummaryResponse edit(@PathVariable(value = "id") Long id,
                                 @RequestBody SummaryRequest summaryRequest) throws JobSearchException {
-        return summaryConverter.from(summaryService.edit(summaryRequest,id));
+        return summaryConverter.from(summaryService.edit(summaryRequest, id));
+    }
+
+    @PatchMapping(value = "{id}")
+    public SummaryResponse updateState(@AuthenticationPrincipal Worker worker,
+                                       @PathVariable(value = "id") Long id) throws JobSearchException {
+        return summaryConverter.from(summaryService.updateState(worker, id));
+    }
+
+    @DeleteMapping
+    public void deleteAll(@AuthenticationPrincipal Worker worker) {
+        summaryService.deleteAll(worker);
+    }
+
+    @DeleteMapping(value = "{id}")
+    public void deleteById(@AuthenticationPrincipal Worker worker,
+                                 @PathVariable(value = "id") Long id) throws JobSearchException {
+        summaryService.delete(worker, id);
     }
 }

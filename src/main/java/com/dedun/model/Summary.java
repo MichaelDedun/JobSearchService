@@ -1,7 +1,11 @@
 package com.dedun.model;
 
+import com.dedun.model.enums.State;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +22,9 @@ public class Summary {
     private String sex;
     private Integer workExperience;
     private String educationalInstitution;
-    private int desiredSalary;
+    private BigDecimal desiredSalary;
+    private String careerObjective;
+    private ZonedDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "worker_id")
@@ -27,10 +33,14 @@ public class Summary {
     @OneToMany(mappedBy = "summary", cascade = CascadeType.REMOVE)
     private List<Skills> skills;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private State state;
+
     public Summary() {
     }
 
-    public Summary(String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educationalInstitution, int desiredSalary, Worker worker) {
+    public Summary(String mobilePhone, String city, LocalDate dateOfBirth, String sex, Integer workExperience, String educationalInstitution, BigDecimal desiredSalary, String careerObjective ,ZonedDateTime date , Worker worker) {
         this.mobilePhone = mobilePhone;
         this.city = city;
         this.dateOfBirth = dateOfBirth;
@@ -38,6 +48,8 @@ public class Summary {
         this.workExperience = workExperience;
         this.educationalInstitution = educationalInstitution;
         this.desiredSalary = desiredSalary;
+        this.careerObjective = careerObjective;
+        this.date = date;
         this.worker = worker;
     }
 
@@ -98,12 +110,39 @@ public class Summary {
         this.educationalInstitution = educationalInstitution;
     }
 
-    public int getDesiredSalary() {
+    public BigDecimal getDesiredSalary() {
         return desiredSalary;
     }
 
-    public void setDesiredSalary(int desiredSalary) {
+    public void setDesiredSalary(BigDecimal desiredSalary) {
         this.desiredSalary = desiredSalary;
+    }
+
+    public String getCareerObjective() {
+        return careerObjective;
+    }
+
+    public Summary setCareerObjective(String careerObjective) {
+        this.careerObjective = careerObjective;
+        return this;
+    }
+
+    public ZonedDateTime getDate() {
+        return date;
+    }
+
+    public Summary setDate(ZonedDateTime date) {
+        this.date = date;
+        return this;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public Summary setState(State state) {
+        this.state = state;
+        return this;
     }
 
     public Worker getWorker() {
@@ -129,20 +168,23 @@ public class Summary {
         if (this == o) return true;
         if (!(o instanceof Summary)) return false;
         Summary summary = (Summary) o;
-        return getDesiredSalary() == summary.getDesiredSalary() &&
-                Objects.equals(getId(), summary.getId()) &&
+        return Objects.equals(getId(), summary.getId()) &&
                 Objects.equals(getMobilePhone(), summary.getMobilePhone()) &&
                 Objects.equals(getCity(), summary.getCity()) &&
                 Objects.equals(getDateOfBirth(), summary.getDateOfBirth()) &&
                 Objects.equals(getSex(), summary.getSex()) &&
                 Objects.equals(getWorkExperience(), summary.getWorkExperience()) &&
                 Objects.equals(getEducationalInstitution(), summary.getEducationalInstitution()) &&
+                Objects.equals(getDesiredSalary(), summary.getDesiredSalary()) &&
+                Objects.equals(getCareerObjective(), summary.getCareerObjective()) &&
+                Objects.equals(getDate(), summary.getDate()) &&
                 Objects.equals(getWorker(), summary.getWorker()) &&
-                Objects.equals(getSkills(), summary.getSkills());
+                Objects.equals(getSkills(), summary.getSkills()) &&
+                getState() == summary.getState();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getMobilePhone(), getCity(), getDateOfBirth(), getSex(), getWorkExperience(), getEducationalInstitution(), getDesiredSalary(), getWorker(), getSkills());
+        return Objects.hash(getId(), getMobilePhone(), getCity(), getDateOfBirth(), getSex(), getWorkExperience(), getEducationalInstitution(), getDesiredSalary(), getCareerObjective(), getDate(), getWorker(), getSkills(), getState());
     }
 }
