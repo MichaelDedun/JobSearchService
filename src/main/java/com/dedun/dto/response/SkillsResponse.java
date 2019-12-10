@@ -6,6 +6,10 @@ public class SkillsResponse {
     public SkillsResponse() {
     }
 
+    public SkillsResponse(String skills) {
+        this.skills = skills;
+    }
+
     public String getSkills() {
         return skills;
     }

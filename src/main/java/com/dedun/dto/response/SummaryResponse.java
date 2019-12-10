@@ -2,6 +2,7 @@ package com.dedun.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class SummaryResponse {
     private Long id;
@@ -13,6 +14,7 @@ public class SummaryResponse {
     private String educarionalInstitution;
     private String careerObjective;
     private BigDecimal desiredSalary;
+    private List<SkillsResponse> skills;
 
     public SummaryResponse() {
     }
@@ -95,6 +97,15 @@ public class SummaryResponse {
 
     public SummaryResponse setDesiredSalary(BigDecimal desiredSalary) {
         this.desiredSalary = desiredSalary;
+        return this;
+    }
+
+    public List<SkillsResponse> getSkills() {
+        return skills;
+    }
+
+    public SummaryResponse setSkills(List<SkillsResponse> skills) {
+        this.skills = skills;
         return this;
     }
 }

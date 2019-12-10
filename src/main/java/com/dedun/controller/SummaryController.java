@@ -73,7 +73,7 @@ public class SummaryController {
 
     @DeleteMapping(value = "{id}")
     public void deleteById(@AuthenticationPrincipal Worker worker,
-                                 @PathVariable(value = "id") Long id) throws JobSearchException {
+                           @PathVariable(value = "id") Long id) throws JobSearchException {
         summaryService.delete(worker, id);
     }
 }

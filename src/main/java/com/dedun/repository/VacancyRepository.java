@@ -19,6 +19,4 @@ public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
     Optional<Vacancy> findByEmployerIdAndId(Long workerId, Long id);
 
     List<Vacancy> findByDateBetween(ZonedDateTime start, ZonedDateTime end);
-
-    List<Vacancy> findByRequirements(List<Requirements> requirements);
 }

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class SkillsSerivce {
     private final SkillsRepository skillsRepository;
     private final SummaryRepository summaryRepository;
+
     public SkillsSerivce(SkillsRepository skillsRepository,
                          SummaryRepository summaryRepository) {
         this.skillsRepository = skillsRepository;

@@ -7,15 +7,24 @@ import com.dedun.model.Worker;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Service
 public class SummaryConverter extends JobEntityConverter<Summary, SummaryResponse> {
-    public SummaryConverter() {
+    private final SkillsConverter converter;
+
+    public SummaryConverter(SkillsConverter converter) {
         super(SummaryResponse::new);
+        this.converter = converter;
     }
 
     @Override
     protected SummaryResponse inflateResponse(Summary summary, SummaryResponse summaryResponse) {
+        if (summary.getSkills() == null)
+            summaryResponse.setSkills(new ArrayList<>());
+        else
+            summaryResponse.setSkills(summary.getSkills().stream().map(converter::from).collect(Collectors.toList()));
         return summaryResponse
                 .setId(summary.getId())
                 .setMobilePhone(summary.getMobilePhone())
@@ -29,6 +38,6 @@ public class SummaryConverter extends JobEntityConverter<Summary, SummaryRespons
     }
 
     public static Summary toEntity(SummaryRequest request, Worker worker) {
-        return new Summary(request.getMobilePhone(), request.getCity(), request.getDateOfBirth(), request.getSex(), request.getWorkExperience(), request.getEducationalInstitution(), request.getDesiredSalary(), request.getCareerObjective() ,ZonedDateTime.now(), worker);
+        return new Summary(request.getMobilePhone(), request.getCity(), request.getDateOfBirth(), request.getSex(), request.getWorkExperience(), request.getEducationalInstitution(), request.getDesiredSalary(), request.getCareerObjective(), ZonedDateTime.now(), worker);
     }
 }

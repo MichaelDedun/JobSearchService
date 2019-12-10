@@ -1,13 +1,11 @@
 package com.dedun.controller;
 
-import com.dedun.dto.request.SkillsRequest;
-import com.dedun.model.Vacancy;
+import com.dedun.dto.request.SearchRequest;
 import com.dedun.service.SearchService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/search")
@@ -19,7 +17,7 @@ public class SearchController {
     }
 
     @GetMapping
-    private List<Vacancy> find(SkillsRequest request) {
+    private String find( @RequestBody SearchRequest request) {
         return  searchService.getAllWithSimilar(request);
     }
 }
